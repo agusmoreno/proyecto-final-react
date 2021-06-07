@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import '../styles/navBar.css';
 import { Button,Navbar,Nav,Form,FormControl,NavDropdown } from 'react-bootstrap';
+import CartWidget from "./CartWidget"
 
 class NavBar extends Component {
   render() {
@@ -18,6 +19,7 @@ class NavBar extends Component {
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-primary">Search</Button>
+          <CartWidget />
         </Form>
       </Navbar>
     );
