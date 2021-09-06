@@ -1,47 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+ 
+ function ItemCount({ stock, initial }) {
+    const [count, setCount] = useState(initial);
+     return (
+         <div>
+             <button disabled= {count === stock} onClick={() => setCount(count + 1)}>
+                +
+            </button>
+            <p> {count} </p>
+            <button disabled= {count === initial} onClick={() => setCount(count - 1)}>
+                -
+            </button>
 
-export default class Counter extends Component {
-  state = {
-    title: "Shampoo",
-    counter: 0
-  };
-
-  incrementCounter = () => {
-    this.setState(prevState => ({
-      counter: prevState.counter + 1
-    }));
-  };
-
-  decrementCounter = () => {
-    this.setState(prevState => ({
-      counter: prevState.counter - 1
-    }));
-  };
-
-  render() {
-    return (
-      <section>
-        <div>
-          <h1>{this.state.title}</h1>
-          <div>
-            <div>
-              <button onClick={this.incrementCounter}>
-                <span> +
-                </span>
-              </button>
-            </div>
-            <div >
-              <h2>{this.state.counter}</h2>
-            </div>
-            <div >
-              <button onClick={this.decrementCounter}>
-                <span>-
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-}
+         </div>
+     )
+ }
+ 
+ export default ItemCount
+ 
+ 

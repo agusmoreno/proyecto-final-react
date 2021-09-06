@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import '../styles/navBar.css';
 import { Button,Navbar,Nav,Form,FormControl,NavDropdown } from 'react-bootstrap';
 import CartWidget from "./CartWidget"
 
