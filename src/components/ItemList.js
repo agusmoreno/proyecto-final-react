@@ -1,7 +1,6 @@
-
-import { useEffect, useState } from "react";
 import  Item  from "./Item";
 
+<<<<<<< Updated upstream
 // import Item from "./Item.js"
 
 function getItems() {
@@ -38,6 +37,9 @@ const ItemList = () => {
         itemsPromise.then((result)=>  setItems(result))     
     }, [])
 
+=======
+const ItemList = ({items}) => {
+>>>>>>> Stashed changes
     return (
         <div>
             {items.map((item) => (
