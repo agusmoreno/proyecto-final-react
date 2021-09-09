@@ -1,17 +1,26 @@
-import React, { Component } from "react";
 import { Button,Navbar,Nav,Form,FormControl,NavDropdown } from 'react-bootstrap';
 import CartWidget from "./CartWidget"
+import { Link } from 'react-router-dom'
 
-class NavBar extends Component {
-  render() {
+function NavBar() {
     return (
         <Navbar bg="light" variant="light">
+        <Link to="/">
         <Navbar.Brand href="#home">Richa</Navbar.Brand>
+        </Link>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <NavDropdown title="Catalogo" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#hairCare">Hair Care</NavDropdown.Item>
-        <NavDropdown.Item href="#facialCare">Facial Care</NavDropdown.Item>
+        <NavDropdown.Item href="#hairCare">
+        <Link to="/category/hairCare">
+          Hair Care
+          </Link>
+          </NavDropdown.Item>
+        <NavDropdown.Item href="#facialCare">
+        <Link to="/category/facialCare">
+          Facial Care
+        </Link>
+          </NavDropdown.Item>
       </NavDropdown>
           <Nav.Link href="#contacto">Contacto</Nav.Link>
         </Nav>
@@ -23,6 +32,6 @@ class NavBar extends Component {
       </Navbar>
     );
   }
-}
+
 
 export default NavBar;

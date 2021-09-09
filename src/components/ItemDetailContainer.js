@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import  ItemDetail  from "./ItemDetail";
 
 
-function getItemsDetails() {
-    return [
+const itemsDetails = [
         {
             id: 1,
             title: "Aloe vera & neem hair cleanser (200ml)",
@@ -27,27 +27,41 @@ function getItemsDetails() {
             description: "ANTI-BREAKAGE BENEFITS AND STRENGTHEN HAIR FOLLICLES.",
             stock: 5,
             pictureUrl: "https://m.media-amazon.com/images/I/612eEAWy9yL._SL1500_.jpg"
+        },
+        {
+            id: 4,
+            title: "Facial cleanser sandalwood & orange peel (200ml)",
+            price: 200,
+            description: "The Forest Essentials Facial Cleanser Sandalwood & Orange Peel is enriched with a fresh infusion of antioxidant rich ingredients including Nagkesar, Orange Peel, Basil, and hydrating Coconut Water, which is one of the purest, natural moisturizers. Together, they gently cleanse the skin by removing excess sebum and impurities. The skin is left perfectly matte, clear and fresh.",
+            stock: 5,
+            pictureUrl: "https://cdn.forestessentialsindia.com/pub/media/catalog/product/9/7/9772_face_wash_sandalwood_orange_peel_200ml_fornt1.png" 
         }
     ]
     
-}
 let itemsDetailPromise = new Promise((resolve) => {
     setTimeout(() => {
         resolve(getItemsDetails());        
     }, 2000);
 });
+function getItemsDetails() {
+    return itemsDetails
+    
+}
 
 const ItemDetailContainer = () => {
-    const [items, setItems] = useState([]);
+    const { id } = useParams()
+
+    const [item, setItem] = useState([]);
     useEffect(() => {
-        itemsDetailPromise.then((result)=>  setItems(result))     
-    }, [])
+        itemsDetailPromise.then((result)=> { 
+            console.log("RESULT ", result)
+            console.log(typeof id)
+            setItem(result.filter(item => item.id === parseInt(id))[0])})     
+    }, [id])
 
     return (
         <div>
-            {items.map((item) => (
-                <ItemDetail key={item.id} item={item}/>
-            ))}
+                <ItemDetail item={item}/>
         </div>
     )
 }
