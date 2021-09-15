@@ -1,12 +1,15 @@
 import './App.css';
+import { useState, createContext } from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from "./components/NavBar"
 import ItemListContainer from "./components/ItemListContainer"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemDetailContainer from './components/ItemDetailContainer';
+import CartContextProvider from './context/CartContext'
 
 function App() {
   return (
+    <CartContextProvider>
     <div className="App" >
     <BrowserRouter>
       <NavBar />
@@ -23,6 +26,7 @@ function App() {
     </Switch>
     </BrowserRouter>
     </div>
+    </CartContextProvider>
   );
 }
 
