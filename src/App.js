@@ -6,6 +6,7 @@ import ItemListContainer from "./components/ItemListContainer"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import CartContextProvider from './context/CartContext'
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+      <Route exact path='/cart'>   
+      <Cart />
+      </Route>
         <Route exact path='/'>   
       <ItemListContainer greeting="Bienvenidos!" />
       </Route>
