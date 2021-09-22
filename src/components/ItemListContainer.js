@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import ItemCount from "./ItemCount";
 import ItemList from "./ItemList"
+import { getFirestore } from '../firebase/getFirebase';
 
 const ItemListContainer = ({ greeting }) => {
     const itemsList = [{
@@ -38,39 +39,22 @@ const ItemListContainer = ({ greeting }) => {
     const { category } = useParams()
     const [items, setItems] = useState([]);
     useEffect(() => {
-        itemsPromise.then((result) => setItems(result))
-    }, [])
 
-    useEffect(() => {
+        let db = getFirestore()
+        let itemCollection = db.collection('items')
+        const dbQuery = categoryId ?  itemCollection.where('categoryId', '==', categoryId) : itemCollection
+        dbQuery.get().then(resp => {
+            if (resp.size === 0) {
+                console.log('No Result!!')
+            }
+            setItems(resp.docs.map(item=> ({id: item.id, ...item.data()}) ))
+        })
+        .catch((error) => {
+            console.log("Error searching items", error)
+        }).finally(() => {
+            setLoading(false)
+        })
 
-        if (category === undefined) {
-            categoryPromise.then((result) => setItems(result))
-        } else {
-            console.log(category)
-            categoryPromise.then((result) => {
-                console.log(result)
-                setItems(result.filter(result => category === result.category))
-            })
-        }
-    }, [category])
-
-    let itemsPromise = new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(getItemsId());
-        }, 2000);
-    });
-    function getItemsId(id) {
-        if (id === undefined) {
-            return itemsList
-        } else {
-            return itemsList.find(item => item.id === id)
-        }
-    }
-    let categoryPromise = new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(getItemsId());
-        }, 2000);
-    });
 
 
 
