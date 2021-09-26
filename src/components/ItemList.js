@@ -1,6 +1,7 @@
 import  Item  from "./Item";
 
 const ItemList = ({items}) => {
+    items = Array.from(items)
     return (
         <div>
             {items.map((item) => (
