@@ -1,7 +1,12 @@
+import React, { useState } from "react"
 import { useCartContext } from "../context/CartContext"
 import { Link } from 'react-router-dom'
+import Modal from './Modal'
+
 const Cart = () => {
+    const [showModal, setShowModal] = useState(false);
     const { items, deleteItems, total, deleteItem } = useCartContext()
+    console.log("items=", items)
     return (
         <div>
             {(items.length > 0) && <div>
@@ -13,6 +18,8 @@ const Cart = () => {
                 )}
                 <p> Total: {total()} </p>
                 <button onClick={deleteItems} >Delete items on cart</button>
+                <button onClick={() => setShowModal(true)}>Finish Order</button>
+                <Modal show={showModal} onHide={() => setShowModal(false)}/>
             </div>
             }
 
