@@ -9,8 +9,7 @@ function NavBar() {
         <Navbar.Brand href="#home">Richa</Navbar.Brand>
         </Link>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <NavDropdown title="Catalogo" id="basic-nav-dropdown">
+          <NavDropdown title="Categories" id="basic-nav-dropdown">
         <NavDropdown.Item href="#hairCare">
         <Link to="/category/hairCare">
           Hair Care
@@ -22,13 +21,8 @@ function NavBar() {
         </Link>
           </NavDropdown.Item>
       </NavDropdown>
-          <Nav.Link href="#contacto">Contacto</Nav.Link>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-primary">Search</Button>
-          <CartWidget />
-        </Form>
+        <CartWidget />
       </Navbar>
     );
   }

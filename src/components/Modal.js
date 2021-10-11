@@ -26,7 +26,8 @@ const [idOrder, setIdOrder] = useState(null)
             order.items = items.map((item) => {
                 const id = item.item.id;
                 const title = item.item.title
-                return {id, title}
+                const price = item.item.price
+                return {id, title, price}
             })
             console.log("orderr" , order)
             ordersCollection.add(order)
