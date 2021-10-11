@@ -24,7 +24,7 @@ Para visitar la aplicación:
 
 localhost:3000/
 
-Screenshots del proyecto
+Video del proyecto
 richaApp.mp4
 
 Dependencias
