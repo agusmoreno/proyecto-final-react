@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import Modal from "react-bootstrap/Modal"
 import { getFirestore } from "../firebase/getFirebase"
 import { useCartContext } from "../context/CartContext"
